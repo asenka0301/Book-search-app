@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { addBooks } from '../slice/booksSlice';
 
 const SearchForm = () => {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
-  const key = process.env.GOOGLE_BOOKS_API;
+  const key = process.env.REACT_APP_GOOGLE_BOOKS_API;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${inputValue}&key=${key}`);
       console.log(response.data.items);
+      dispatch(addBooks(response.data.items));
     } catch (errors) {
       console.log(errors);
     }

@@ -1,7 +1,7 @@
 name: Node CI
 
 env: 
-  GOOGLE_BOOKS_API: ${{ secrets.GOOGLE_BOOKS_API }}
+  REACT_APP_GOOGLE_BOOKS_API: ${{ secrets.REACT_APP_GOOGLE_BOOKS_API }}
 
 on:
   - push
