@@ -1,5 +1,8 @@
 name: Node CI
 
+env: 
+  CI: true
+
 on:
   - push
   - pull_request
@@ -20,7 +23,5 @@ jobs:
           node-version: ${{ matrix.node-version}}
       - name: Install
         run: npm ci
-      - name: Start
-        run: npm start
         env:
-          ACCESS_TOKEN: ${{secrets.GOOGLE_BOOKS_API}}
+          GOOGLE_BOOKS_API: ${{ secrets.GOOGLE_BOOKS_API }}

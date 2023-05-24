@@ -4,8 +4,7 @@ import axios from 'axios';
 
 const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
-  const key = process.env.ACCESS_TOKEN;
-  console.log(key);
+  const key = process.env.GOOGLE_BOOKS_API;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
