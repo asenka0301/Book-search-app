@@ -4,6 +4,8 @@ import axios from 'axios';
 
 const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
+  const key = process.env.ACCESS_TOKEN;
+  console.log(key);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
