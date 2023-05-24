@@ -21,4 +21,4 @@ jobs:
       - name: Install
         run: npm ci
         env: 
-          GOOGLE_BOOKS_API: ${{ secrets.REACT_APP_GOOGLE_BOOKS_API }}
+          REACT_APP_GOOGLE_BOOKS_API: ${{ secrets.REACT_APP_GOOGLE_BOOKS_API }}
