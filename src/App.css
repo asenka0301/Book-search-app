@@ -23,9 +23,9 @@
     color: #fff;
   }
  
-  .books {
-    margin-top: 25px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 0.5fr));
-    grid-gap: 20px;
+  .book-card {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    height: 500px;
   }
+
