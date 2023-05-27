@@ -18,10 +18,10 @@ const SearchForm = () => {
       const response = await axios.get(`https://openlibrary.org/search.json?q=${inputValue}`);
       console.log(response.data);
       dispatch(addBooks(response.data.docs));
+      load.setLoading(false);
     } catch (errors) {
       console.log(errors);
     }
-    load.setLoading(false);
   };
 
   return (
