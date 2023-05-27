@@ -9,8 +9,8 @@ const BooksPerPageSelect = ({ booksPerPage, setBooksPerPage, setCurrentPage }) =
 
   return (
     <div className="d-flex align-items-center mx-2">
-      <Form.Label className="m-0 mx-1">Показывать по</Form.Label>
-      <Form.Select className="page-select" value={booksPerPage} onChange={handleChange}>
+      <Form.Label className="text-nowrap m-0 mx-1">Показывать по</Form.Label>
+      <Form.Select value={booksPerPage} onChange={handleChange}>
         <option value="10">10</option>
         <option value="50">50</option>
         <option value="100">100</option>
