@@ -9,14 +9,12 @@ const SearchForm = () => {
   const load = useLoad();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
-  // const key = process.env.REACT_APP_GOOGLE_BOOKS_API;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       load.setLoading(true);
       const response = await axios.get(`https://openlibrary.org/search.json?q=${inputValue}`);
-      console.log(response.data);
       dispatch(addBooks(response.data.docs));
       load.setLoading(false);
     } catch (errors) {

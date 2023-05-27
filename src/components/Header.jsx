@@ -1,13 +1,13 @@
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
-import SearchForm from './SearchForm';
+import BookSearchForm from './BookSearchForm';
 
 const Header = () => (
   <Navbar className="header">
     <Container>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        <SearchForm />
+        <BookSearchForm />
       </Navbar.Collapse>
     </Container>
   </Navbar>
