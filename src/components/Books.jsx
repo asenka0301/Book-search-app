@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
@@ -9,19 +10,32 @@ const Books = () => {
     const { books } = state.booksReducer;
     return books;
   });
+  console.log(booksInfo);
 
-  const sortByBookTitle = _.sortBy(booksInfo, ['title']);
-  // const sortByBookAuthor = _.sortBy(booksInfo, ['authors']);
+  const booksSortedBy = useSelector((state) => {
+    const { sortedBy } = state.booksReducer;
+    return sortedBy;
+  });
 
-  console.log(sortByBookTitle);
+  const sortBooks = {
+    byTitle(data) {
+      return _.sortBy(data, ['title']);
+    },
+    byAuthor(data) {
+      return _.sortBy(data, ['authors_name']);
+    },
+  };
+
   return (
     <Container className="h-100 mt-5">
       <Row>
-        { booksInfo && sortByBookTitle.map(({ authors, title, imageLinks }) => (
-          <Col lg={3} md={3} sm={6}>
-            <BookCard authors={authors} title={title} imageLinks={imageLinks} />
+        {
+        booksInfo && sortBooks[booksSortedBy](booksInfo).map(({ author_name, title, cover_i }) => (
+          <Col lg={3} md={3} sm={6} key={_.uniqueId()}>
+            <BookCard authors={author_name} title={title} cover_i={cover_i} />
           </Col>
-        ))}
+        ))
+      }
       </Row>
     </Container>
   );

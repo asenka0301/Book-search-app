@@ -1,11 +1,12 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import BookCover from './no_cover.png';
+import BookCover from '../images/no_cover.png';
 
 const BookCard = (props) => {
-  const { title, imageLinks, authors } = props;
+  const { title, cover_i, authors } = props;
 
-  const cover = imageLinks ? imageLinks.smallThumbnail : BookCover;
+  const cover = cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg` : BookCover;
 
   return (
     <Card className="book-card">

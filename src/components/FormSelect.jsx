@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortedBy } from '../slice/booksSlice';
 
@@ -9,21 +8,17 @@ const FormSelect = () => {
     const { sortedBy } = state.booksReducer;
     return sortedBy;
   });
-  console.log(sortedParam);
-
-  const [selectValue, setSelectValue] = useState(sortedParam);
 
   const handleChange = (e) => {
-    setSelectValue(e.target.value);
-    dispatch(setSortedBy(selectValue));
+    dispatch(setSortedBy(e.target.value));
   };
 
   return (
     <div className="d-flex justify-content-end align-items-center mt-4">
-      <Form.Select value={selectValue} onChange={handleChange}>
-        <option>По автору</option>
-        <option>По названию</option>
-      </Form.Select>
+      <select value={sortedParam} onChange={handleChange}>
+        <option value="byAuthor">По автору</option>
+        <option value="byTitle">По названию</option>
+      </select>
     </div>
   );
 };
