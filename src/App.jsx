@@ -1,18 +1,15 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import LoadProvider from './context/LoadProvider';
 import Header from './components/Header';
-import Books from './components/Books';
-import FormSelect from './components/FormSelect';
+import MainContent from './components/MainContent';
 
 const App = () => (
-  <div className="d-flex flex-column h-100">
-    <Header />
-    <Container>
-      <FormSelect />
-      <Books />
-    </Container>
-  </div>
-
+  <LoadProvider>
+    <div className="d-flex flex-column h-100">
+      <Header />
+      <MainContent />
+    </div>
+  </LoadProvider>
 );
 
 export default App;

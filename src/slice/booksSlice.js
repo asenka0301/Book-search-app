@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  sortedBy: 'По автору',
+  sortedBy: 'byAuthor',
   books: [],
 };
 
@@ -11,11 +11,9 @@ const booksReducer = createSlice({
   initialState,
   reducers: {
     addBooks(state, { payload }) {
-      const filteredData = payload.map((bookData) => bookData.volumeInfo);
-      state.books = filteredData;
+      state.books = payload;
     },
     setSortedBy(state, { payload }) {
-      console.log(payload);
       state.sortedBy = payload;
     },
   },
