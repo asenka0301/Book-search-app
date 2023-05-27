@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 const SortSelect = ({ sortedBy, setSortedBy }) => {
   const handleChange = (e) => {
@@ -6,10 +7,13 @@ const SortSelect = ({ sortedBy, setSortedBy }) => {
   };
 
   return (
-    <select value={sortedBy} onChange={handleChange}>
-      <option value="byAuthor">По автору</option>
-      <option value="byTitle">По названию</option>
-    </select>
+    <div className="d-flex justify-content-center align-items-center">
+      <Form.Label className="text-nowrap m-0 mx-1">Сортировать по</Form.Label>
+      <Form.Select value={sortedBy} onChange={handleChange}>
+        <option value="byAuthor">автору</option>
+        <option value="byTitle">названию</option>
+      </Form.Select>
+    </div>
   );
 };
 

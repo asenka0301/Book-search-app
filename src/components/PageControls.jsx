@@ -11,7 +11,7 @@ const PageControls = (props) => {
     setSortedBy,
   } = props;
   return (
-    <div className="d-flex justify-content-end align-items-center mt-4">
+    <div className="controls">
       <BooksPerPageSelect
         booksPerPage={booksPerPage}
         setBooksPerPage={setBooksPerPage}

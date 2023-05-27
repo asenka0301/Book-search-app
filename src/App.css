@@ -33,3 +33,13 @@
     height: 500px;
   }
 
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .page-select {
+    width: 80px;
+  }
+
