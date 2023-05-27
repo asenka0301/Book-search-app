@@ -1,18 +1,31 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import FormSelect from './FormSelect';
+import PageControls from './PageControls';
 import Books from './Books';
 import useLoad from '../hooks';
 import Loader from './Loader';
 
-const MainContent = ({ firstBookIndex, lastBookIndex }) => {
+const MainContent = (props) => {
   const load = useLoad();
-
+  const {
+    currentPage,
+    setCurrentPage,
+    booksPerPage,
+    setBooksPerPage,
+    sortedBy,
+    setSortedBy,
+  } = props;
   return (
     <Container className="h-100 d-flex flex-column">
-      <FormSelect />
+      <PageControls
+        setCurrentPage={setCurrentPage}
+        booksPerPage={booksPerPage}
+        setBooksPerPage={setBooksPerPage}
+        sortedBy={sortedBy}
+        setSortedBy={setSortedBy}
+      />
       {load.loading ? <Loader />
-        : <Books firstBookIndex={firstBookIndex} lastBookIndex={lastBookIndex} />}
+        : <Books currentPage={currentPage} booksPerPage={booksPerPage} sortedBy={sortedBy} />}
     </Container>
   );
 };

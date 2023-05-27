@@ -5,17 +5,14 @@ import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import BookCard from './BookCard';
 
-const Books = ({ firstBookIndex, lastBookIndex }) => {
-  const booksInfo = useSelector((state) => {
+const Books = ({ currentPage, booksPerPage, sortedBy }) => {
+  const AllBooks = useSelector((state) => {
     const { books } = state.booksReducer;
     return books;
   });
-  console.log(booksInfo);
 
-  const booksSortedBy = useSelector((state) => {
-    const { sortedBy } = state.booksReducer;
-    return sortedBy;
-  });
+  const lastIndex = currentPage * booksPerPage;
+  const firstIndex = lastIndex - booksPerPage;
 
   const sortBooks = {
     byTitle(data) {
@@ -30,8 +27,8 @@ const Books = ({ firstBookIndex, lastBookIndex }) => {
     <Container className="h-100 mt-5">
       <Row>
         {
-        booksInfo && sortBooks[booksSortedBy](booksInfo)
-          .slice(firstBookIndex, lastBookIndex)
+        AllBooks && sortBooks[sortedBy](AllBooks)
+          .slice(firstIndex, lastIndex)
           .map(({ author_name, title, cover_i }) => (
             <Col lg={3} md={3} sm={6} key={_.uniqueId()}>
               <BookCard authors={author_name} title={title} cover_i={cover_i} />
