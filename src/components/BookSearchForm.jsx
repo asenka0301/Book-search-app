@@ -37,7 +37,7 @@ const SearchForm = ({ setCurrentPage }) => {
       <Form.Control
         type="search"
         placeholder="Aвтор или название книги"
-        className="fs-16 me-3"
+        className="fs-16 me-3 w-100"
         autoFocus
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
