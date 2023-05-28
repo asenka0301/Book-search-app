@@ -5,7 +5,7 @@ import axios from 'axios';
 import { addBooks } from '../slice/booksSlice';
 import useLoad from '../hooks';
 
-const SearchForm = () => {
+const SearchForm = ({ setCurrentPage }) => {
   const load = useLoad();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
@@ -14,8 +14,18 @@ const SearchForm = () => {
     e.preventDefault();
     try {
       load.setLoading(true);
+
       const response = await axios.get(`https://openlibrary.org/search.json?q=${inputValue}`);
-      dispatch(addBooks(response.data.docs));
+      const searchResult = response.data.docs;
+
+      if (searchResult.length > 0) {
+        load.setIsBooksFounded(true);
+        dispatch(addBooks(searchResult));
+        setCurrentPage(1);
+      } else {
+        load.setIsBooksFounded(false);
+      }
+
       load.setLoading(false);
     } catch (errors) {
       console.log(errors);
@@ -27,12 +37,13 @@ const SearchForm = () => {
       <Form.Control
         type="search"
         placeholder="Aвтор или название книги"
-        className="me-2"
+        className="fs-16 me-3"
         autoFocus
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        disabled={load.loading}
       />
-      <Button variant="success" type="submit">Поиск</Button>
+      <Button className="submit-button" variant="success" type="submit">Поиск</Button>
     </Form>
   );
 };

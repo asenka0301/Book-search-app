@@ -8,8 +8,8 @@ const SortSelect = ({ sortedBy, setSortedBy }) => {
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      <Form.Label className="text-nowrap m-0 mx-1">Сортировать по</Form.Label>
-      <Form.Select value={sortedBy} onChange={handleChange}>
+      <Form.Label className="text-nowrap m-0 mx-3">Сортировать по</Form.Label>
+      <Form.Select className="fs-16" value={sortedBy} onChange={handleChange}>
         <option value="byAuthor">автору</option>
         <option value="byTitle">названию</option>
       </Form.Select>
