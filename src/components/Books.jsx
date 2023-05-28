@@ -12,7 +12,7 @@ const Books = ({ currentPage, booksPerPage, sortedBy }) => {
     const { books } = state.booksReducer;
     return books;
   });
-  console.log(AllBooks);
+
   const lastIndex = currentPage * booksPerPage;
   const firstIndex = lastIndex - booksPerPage;
 
@@ -35,7 +35,7 @@ const Books = ({ currentPage, booksPerPage, sortedBy }) => {
             sortBooks[sortedBy](AllBooks)
               .slice(firstIndex, lastIndex)
               .map(({ author_name, title, cover_i }) => (
-                <Book authors={author_name} title={title} cover_i={cover_i} />
+                <Book key={_.uniqueId()} authors={author_name} title={title} cover_i={cover_i} />
               ))
             }
           </div>
