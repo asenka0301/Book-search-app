@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
-import useLoad from '../hooks';
+import cn from 'classnames';
 
-const Pagination = ({ booksPerPage, setCurrentPage }) => {
-  const load = useLoad();
+const Pagination = ({ booksPerPage, setCurrentPage, currentPage }) => {
   const pageNumbers = [];
 
   const allBooks = useSelector((state) => {
@@ -19,17 +17,28 @@ const Pagination = ({ booksPerPage, setCurrentPage }) => {
   }
 
   return (
-    <Container>
-      { !load.loading && (
+    <div className="pagination-container start-50">
       <ul className="pagination">
         { pageNumbers && pageNumbers.map((number) => (
           <li className="page-item" key={_.uniqueId()}>
-            <a href="#" className="page-link" onClick={() => setCurrentPage(number)}>{number}</a>
+            <a
+              href="#"
+              className={cn(
+                'pagination-item',
+                'page-link',
+                'fs-16',
+                {
+                  'active-page': number === currentPage,
+                },
+              )}
+              onClick={() => setCurrentPage(number)}
+            >
+              {number}
+            </a>
           </li>
         )) }
       </ul>
-      )}
-    </Container>
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LoadProvider from './context/LoadProvider';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
-import Pagination from './components/Pagination';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,8 +10,10 @@ const App = () => {
 
   return (
     <LoadProvider>
-      <div className="d-flex flex-column h-100">
-        <Header />
+      <div className="d-flex flex-column">
+        <Header
+          setCurrentPage={setCurrentPage}
+        />
         <MainContent
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
@@ -21,7 +22,6 @@ const App = () => {
           sortedBy={sortedBy}
           setSortedBy={setSortedBy}
         />
-        <Pagination booksPerPage={booksPerPage} setCurrentPage={setCurrentPage} />
       </div>
     </LoadProvider>
   );

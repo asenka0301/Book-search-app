@@ -1,16 +1,18 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
-import BookCard from './BookCard';
+import Book from './Book';
+import useLoad from '../hooks';
 
 const Books = ({ currentPage, booksPerPage, sortedBy }) => {
+  const load = useLoad();
   const AllBooks = useSelector((state) => {
     const { books } = state.booksReducer;
     return books;
   });
-
+  console.log(AllBooks);
   const lastIndex = currentPage * booksPerPage;
   const firstIndex = lastIndex - booksPerPage;
 
@@ -19,23 +21,26 @@ const Books = ({ currentPage, booksPerPage, sortedBy }) => {
       return _.sortBy(data, ['title']);
     },
     byAuthor(data) {
-      return _.sortBy(data, ['authors_name']);
+      return _.sortBy(data, ['author_name']);
     },
   };
 
   return (
-    <Container className="h-100 mt-5">
-      <Row>
-        {
-        AllBooks && sortBooks[sortedBy](AllBooks)
-          .slice(firstIndex, lastIndex)
-          .map(({ author_name, title, cover_i }) => (
-            <Col lg={3} md={3} sm={6} key={_.uniqueId()}>
-              <BookCard authors={author_name} title={title} cover_i={cover_i} />
-            </Col>
-          ))
+    <Container className="h-100 mt-4">
+      {
+      !load.isBooksFounded ? <div className="text-center mt-15 fs-20 fw-5">По вашему запросу книги не найдены</div>
+        : (
+          <div className="booklist-content grid">
+            {
+            sortBooks[sortedBy](AllBooks)
+              .slice(firstIndex, lastIndex)
+              .map(({ author_name, title, cover_i }) => (
+                <Book authors={author_name} title={title} cover_i={cover_i} />
+              ))
+            }
+          </div>
+        )
       }
-      </Row>
     </Container>
   );
 };

@@ -3,8 +3,8 @@ import React from 'react';
 const Icon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="200"
-    height="200"
+    width="110"
+    height="110"
     version="1"
     viewBox="0 0 128 128"
   >
@@ -62,7 +62,7 @@ const Icon = () => (
       <animateTransform
         attributeName="transform"
         calcMode="discrete"
-        dur="1040ms"
+        dur="960ms"
         repeatCount="indefinite"
         type="rotate"
         values="0 64 64;315 64 64;270 64 64;225 64 64;180 64 64;135 64 64;90 64 64;45 64 64"

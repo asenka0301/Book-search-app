@@ -4,6 +4,7 @@ import PageControls from './PageControls';
 import Books from './Books';
 import useLoad from '../hooks';
 import Loader from './Loader';
+import Pagination from './Pagination';
 
 const MainContent = (props) => {
   const load = useLoad();
@@ -16,7 +17,7 @@ const MainContent = (props) => {
     setSortedBy,
   } = props;
   return (
-    <Container className="h-100 d-flex flex-column">
+    <Container className="h-100 d-flex flex-column position-relative">
       <PageControls
         setCurrentPage={setCurrentPage}
         booksPerPage={booksPerPage}
@@ -24,8 +25,16 @@ const MainContent = (props) => {
         sortedBy={sortedBy}
         setSortedBy={setSortedBy}
       />
-      {load.loading ? <Loader />
-        : <Books currentPage={currentPage} booksPerPage={booksPerPage} sortedBy={sortedBy} />}
+      { load.loading ? <Loader />
+        : <Books currentPage={currentPage} booksPerPage={booksPerPage} sortedBy={sortedBy} /> }
+      {!load.loading
+      && (
+        <Pagination
+          currentPage={currentPage}
+          booksPerPage={booksPerPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </Container>
   );
 };
