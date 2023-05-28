@@ -27,7 +27,7 @@ const MainContent = (props) => {
       />
       { load.loading ? <Loader />
         : <Books currentPage={currentPage} booksPerPage={booksPerPage} sortedBy={sortedBy} /> }
-      {!load.loading
+      {!load.loading && load.isBooksFounded
       && (
         <Pagination
           currentPage={currentPage}
