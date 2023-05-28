@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <LoadProvider>
-      <div className="d-flex flex-column">
+      <div className="mh-100 d-flex flex-column">
         <Header
           setCurrentPage={setCurrentPage}
         />

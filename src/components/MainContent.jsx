@@ -17,7 +17,7 @@ const MainContent = (props) => {
     setSortedBy,
   } = props;
   return (
-    <Container className="h-100 d-flex flex-column">
+    <Container className="mh-100 d-flex flex-column">
       <PageControls
         setCurrentPage={setCurrentPage}
         booksPerPage={booksPerPage}

@@ -17,7 +17,7 @@ const Pagination = ({ booksPerPage, setCurrentPage, currentPage }) => {
   }
 
   return (
-    <div className="pagination-container fixed-bottom">
+    <div className="pagination-container">
       <ul className="pagination">
         { pageNumbers && pageNumbers.map((number) => (
           <li className="page-item" key={_.uniqueId()}>
